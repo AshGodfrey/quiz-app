@@ -53,13 +53,22 @@ ul {
 
 .answer-choice {
 	display: flex;
-	background: gray;
+	background: #efe5d5;
 	margin-bottom: 10px;
 	min-width: 200px;
 	height: 50px;
-	color: white;
+	color: #7E615D;
 	flex-direction: column;
 	outline:none;
+}
+
+.answer-choice:hover {
+	background: #7E615D;
+	color: #e4c7c3;
+}
+
+.question-text {
+	margin-bottom: 20px;
 }
 
 input[type=radio]{
@@ -76,7 +85,7 @@ button[type=submit]{
 	color: #755e0d;
 	border: 0px;
 	outline:none;
-
+	margin-top: 20px
 }
 
 button[type=submit]:hover{
