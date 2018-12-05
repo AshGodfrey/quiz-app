@@ -68,7 +68,20 @@ input[type=radio]{
 
 button[type=submit]{
 	-webkit-appearance: none;
+	font-family: 'Noto Serif', serif;
+	height: 50px;
+	width: 60%;
+	font-size: 1.0em;
+	background-color: #DCE4C3;
+	color: #755e0d;
+	border: 0px;
+	outline:none;
 
+}
+
+button[type=submit]:hover{
+    background-color: #798b3f;
+    color: #ebca52
 }
 
 /* START CSS */
