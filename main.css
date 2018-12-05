@@ -1,11 +1,20 @@
+
+html {
+    background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/intermediary/f/15c0dc1c-e0d8-41fd-b4ed-2a1ba42e658e/d5stmxz-4a881b46-6569-49fb-aae9-59a76e8b0b5c.jpg");
+}
+
 body {
+	background-color: white;
 	margin: auto;
     width: 70%;
-    border: 3px solid gray;
-    padding: 10px;
-    margin-top: 100px;
-    min-width: 200px;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 50px;
+    min-width: 250px;
     text-align: center;
+    font-family: 'Noto Sans', sans-serif;
+    max-width: 500px;
+
 }
 
 main {
@@ -22,6 +31,11 @@ fieldset {
 
 h1 {
 	text-align: center;
+	font-family: 'Noto Serif', serif;
+	width: 70%;
+	margin: auto;
+	
+
 }
 
 footer {
@@ -45,6 +59,7 @@ ul {
 	height: 50px;
 	color: white;
 	flex-direction: column;
+	outline:none;
 }
 
 input[type=radio]{
@@ -56,4 +71,32 @@ button[type=submit]{
 
 }
 
-@media
+/* START CSS */
+
+.start-button {
+	font-family: 'Noto Serif', serif;
+	height: 50px;
+	width: 60%;
+	font-size: 1.0em;
+	background-color: #DCE4C3;
+	color: #755e0d;
+	border: 0px;
+	outline:none
+}
+
+.start-button:hover{
+    background-color: #798b3f;
+    color: #ebca52
+}
+
+/* media */
+@media (min-width: 450px) {
+    .start-button {
+       font-size: 1.4em;
+   }
+
+
+ @media (min-width: 600px) {
+    .start-button {
+       font-size: 1.8em;
+   }

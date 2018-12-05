@@ -1,6 +1,8 @@
 let questionNumber = 1;
 let score = 0;
 
+
+
 //Establish questions + answers
 
 
@@ -27,8 +29,9 @@ function updateScore(){
 
 
 //start quiz
-function startQuiz(){
 
+function startQuiz(){
+	
 }
 
 //render question 
@@ -39,16 +42,19 @@ function renderQuestion(){
 //choose answer
 
 function chooseAnswer(){
+	//select an LI
 
 }
 
 //correct answer feedback
 function correctAnswer(){
+	//return 'correct'
 
 }
 
-//incorrect answer
+//incorrect answer feedback
 function incorrectAnswer(){
+	//return incorrect
 
 }
 
