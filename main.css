@@ -34,7 +34,7 @@ h1 {
 	font-family: 'Noto Serif', serif;
 	width: 70%;
 	margin: auto;
-	
+	margin-bottom: 20px;
 
 }
 
@@ -49,7 +49,7 @@ ul li {
 
 ul {
 	padding: 0;
-}
+  }
 
 .answer-choice {
 	display: flex;
@@ -57,14 +57,15 @@ ul {
 	margin-bottom: 10px;
 	min-width: 200px;
 	height: 50px;
-	color: #7E615D;
+	color: #706656;
 	flex-direction: column;
 	outline:none;
+	vertical-align: center;
 }
 
 .answer-choice:hover {
-	background: #7E615D;
-	color: #e4c7c3;
+	background: #706656;
+	color: #efe5d5;
 }
 
 .question-text {
@@ -92,6 +93,13 @@ button[type=submit]:hover{
     background-color: #798b3f;
     color: #ebca52
 }
+
+.answer {
+	vertical-align: center;
+
+}
+
+
 
 /* START CSS */
 
@@ -122,3 +130,15 @@ button[type=submit]:hover{
     .start-button {
        font-size: 1.8em;
    }
+
+   @media (min-width: 450px) {
+    button[type=submit] {
+       font-size: 1.4em;
+   }
+
+
+ @media (min-width: 600px) {
+    button[type=submit] {
+       font-size: 1.8em;
+   }
+
