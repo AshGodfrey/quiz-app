@@ -17,6 +17,7 @@ body {
 
 }
 
+
 main {
 	margin: auto;
     padding: 10px;
@@ -44,11 +45,11 @@ footer {
 
 ul li {
 	list-style: none;
-	display: inline-block;
+	display:inline-block;
 }
 
 ul {
-	padding: 0;
+	padding: 20px;
   }
 
 .answer-choice {
@@ -72,6 +73,7 @@ ul {
 	margin-bottom: 20px;
 }
 
+
 input[type=radio]{
 	-webkit-appearance: none;
 }
@@ -87,6 +89,8 @@ button[type=submit]{
 	border: 0px;
 	outline:none;
 	margin-top: 20px
+	display: block;
+	margin: auto;
 }
 
 button[type=submit]:hover{
@@ -99,11 +103,16 @@ button[type=submit]:hover{
 
 }
 
+#submit-button {
+	padding: 30px;
+	justify-content: center;
+	margin: auto;
+}
 
 
 /* START CSS */
 
-.start-button {
+#start-button {
 	font-family: 'Noto Serif', serif;
 	height: 50px;
 	width: 60%;
@@ -114,7 +123,7 @@ button[type=submit]:hover{
 	outline:none
 }
 
-.start-button:hover{
+#start-button:hover{
     background-color: #798b3f;
     color: #ebca52
 }
