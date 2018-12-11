@@ -69,13 +69,22 @@ ul {
 	color: #efe5d5;
 }
 
+label {
+    cursor: pointer;
+}
+
+input[type="radio"]:checked + label{ 
+	background: #706656;
+	color: #efe5d5;
+} 
+
 .question-text {
 	margin-bottom: 20px;
 }
 
 
 input[type=radio]{
-	-webkit-appearance: none;
+	/* -webkit-appearance: none; */
 }
 
 button[type=submit]{
@@ -97,6 +106,48 @@ button[type=submit]:hover{
     background-color: #798b3f;
     color: #ebca52
 }
+
+/* Prettify me */
+.next-button {
+	-webkit-appearance: none;
+	font-family: 'Noto Serif', serif;
+	height: 50px;
+	width: 60%;
+	font-size: 1.0em;
+	background-color: #DCE4C3;
+	color: #755e0d;
+	border: 0px;
+	outline:none;
+	margin-top: 20px
+	display: block;
+	margin: auto;
+}
+
+.next-button:hover {
+	background-color: #798b3f;
+    color: #ebca52
+}
+
+.restart-button {
+	-webkit-appearance: none;
+	font-family: 'Noto Serif', serif;
+	height: 50px;
+	width: 60%;
+	font-size: 1.0em;
+	background-color: #DCE4C3;
+	color: #755e0d;
+	border: 0px;
+	outline:none;
+	margin-top: 20px
+	display: block;
+	margin: auto;
+}
+
+.restart-button:hover {
+	background-color: #798b3f;
+    color: #ebca52
+}
+
 
 .answer {
 	vertical-align: center;
