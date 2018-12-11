@@ -21,6 +21,7 @@ function startQuiz() {
 		$('#start-page').remove();
 		$("#qa-form").css('display', 'block');
 		renderQuestion();
+		selectAnswer();
 	});
 };
 
@@ -48,7 +49,7 @@ function generateQuestion(){
 						<label id= "ans4" class = "answer-choice">
 							<input type = "radio" value="choicetext" name = "answer" class="answer" required>
 							<span>  VAR  </span>
-						<button type="submit"> submit</button>
+						<button type="submit" class="submit-button"> submit</button>
 					</fieldset>
 				</form>
 			</div>`;
@@ -65,11 +66,12 @@ function renderQuestion(){
 
 //allow uers to select an answer
 function selectAnswer(){
-	$('form').on('submit', function (event) {
+	$('form').submit(function (event) {
 		event.preventDefault();
-		//let choice = $('input:checked');
+		let choice = 2;
 		//let answer = selected.val();
-		alert ('test');
+		scoreAnswer(choice);
+		nextQuestion();
 	});
 };
 
@@ -81,14 +83,26 @@ function changeCurrentQuestion (){
 //next question - to be displayed on feedback
 function nextQuestion() {
 	//select it
-	 $('main').on('click', '', function (event) {
-    changeQuestionNumber();
-    changeCurrentQuestion();
-    renderQuestion();
-    selectAnswer();
-  });
+	// $('main').on('click', '', function (event) {
+    if (currentQuestion < quizQuestions.length) {
+    	changeQuestionNumber();
+	    changeCurrentQuestion();
+	    renderQuestion();
+	} else {
+		displayResults();
+	}
+  //});
 }
 
+//score Answer 
+function scoreAnswer (choice){
+	if (choice = currentQuestion.correctAnswer) {
+		correctAnswerFeedback();
+		changeScore();
+	} else {
+		incorrectAnswerFeedback();
+	}
+}
 
 //increment score
 function changeScore () {
@@ -104,21 +118,21 @@ function changeQuestionNumber () {
 }
 
 //if correct answer
-function ifCorrectAnswer() {
-	correctAnswer();
-	changeScore();
-}
+//function correctAnswer() {
+	//correctAnswerFeedback();
+	//changeScore();
+//}
 
 //feedback for correct answer
-function correctAnswer() {
-	$(".qa-form").html(`<div class="correct">
+function correctAnswerFeedback() {
+	$("#qa-form").html(`<div class="correct">
 		<p><b>You got it right!</b></p><button type=button class="next-button">Next</button></div>
 	</div>`)
 }
 
 //feedback for incorrect answer
-function incorrectAnswer() {
-	$(".qa-form").html(`<div class="correct"><p><b>You got it wrong!</b>
+function incorrectAnswerFeedback() {
+	$("#qa-form").html(`<div class="correct"><p><b>You got it wrong!</b>
 			<p>The correct answer is <span>"${correctAnswer}"</span></p><button type=button class="next-button">Next</button></div>`)
 }
 
