@@ -102,123 +102,79 @@ const quizQuestions = [
 }, 
 ];
 
-let questionNumber = 0;
 let score = 0;
+let questionNumber = 1;
 let currentQuestion = quizQuestions[0];
 
-function startQuiz() {
-	$("button[name='start']").on('click', function(event){
-		$('#start-page').remove();
-		$("#qa-form").css('display', 'block');
-		renderQuestion();
-		selectAnswer();
-		nextQuestion();
-	});
-};
-
-
-
-///the following 2 functions display a question
-function generateQuestion(){
+function generateQuestion () {
 	return `<div class ="question">
 				<fieldset>
 				<legend class ="question-text"> ${currentQuestion.question}</legend>
 				<form>
 						<label id= "ans1" class = "answer-choice">
-							<input type = "radio" value="choicetext" name = "answer" class="answer" required>
+							<input type = "radio" value="${currentQuestion.answers[0]}" name = "answer" class="answer" required>
 							<span>  ${currentQuestion.answers[0]} </span>
 						</label>
 						<label id= "ans2" class = "answer-choice" >
-							<input type = "radio" value="choicetext" name = "answer" class="answer" required>
+							<input type = "radio" value="${currentQuestion.answers[1]}" name = "answer" class="answer" required>
 							<span> ${currentQuestion.answers[1]} </span>
 						</label>
 						<label id= "ans3" class = "answer-choice">
-							<input type = "radio" value="choicetext" name = "answer" class="answer" required>
+							<input type = "radio" value="${currentQuestion.answers[2]}" name = "answer" class="answer" required>
 							<span> ${currentQuestion.answers[2]}  </span>
 						</label>
 						</label>
 						<label id= "ans4" class = "answer-choice">
-							<input type = "radio" value="choicetext" name = "answer" class="answer" required>
+							<input type = "radio" value="${currentQuestion.answers[3]}" name = "answer" class="answer" required>
 							<span> ${currentQuestion.answers[3]}</span>
 						<button type="submit" class="submit-button"> submit</button>
 					</fieldset>
 				</form>
 			</div>`;
-		//} else {
-			//displayResults();
-			//restartQuiz();
-			//do I need to display q number?
-		//}
 };
 
-function renderQuestion(){
-	$("#qa-form").html(generateQuestion());
-};
-
-//allow uers to select an answer
-function selectAnswer(){
-	$('form').submit(function (event) {
-		event.preventDefault();
-		scoreAnswer();
+function startQuizButton () {
+	$("button[name='start']").on('click', function(event){
 		nextQuestion();
 	});
 };
 
-//add one to current question
-function changeCurrentQuestion (){
-	currentQuestion = quizQuestions[++i];
+function nextQuestion () {
+	$('#start-page').remove();
+	$('#qa-form').html(generateQuestion());
 }
 
-//next question - to be displayed on feedback
-function nextQuestion() {
-	//select it
-	$('main').on('click', '.next-button', function (event) {
-	    if (currentQuestion < quizQuestions.length) {
-	    	changeQuestionNumber();
-		    renderQuestion();
-		} else {
-			displayResults();
-		}
-  });
+function submitAnswer() {
+	$('#qa-form').on('click', '.submit-button', function (event) {
+		event.preventDefault();
+		let userChoice = $('input:radio[name=answer]:checked').val();
+		checkAnswer(userChoice);
+	});
 };
 
-
-//score Answer 
-function scoreAnswer (){
-	let selected = $('input:checked');
-	let answer = selected.val();
-	if (answer === currentQuestion.correctAnswer) {
-		correctAnswerFeedback();
-		changeScore();
+function checkAnswer(choice) {
+	if (choice == currentQuestion.correctAnswer) {
+		correctAnswer();
 	} else {
-		incorrectAnswerFeedback();
+		incorrectAnswer();
 	}
+};
+
+function correctAnswer() {
+	correctAnswerFeedback()
+	addToScore();
 }
 
-//increment score
-function changeScore () {
-  score ++;
-  $('.score').text(score+1);
+function incorrectAnswer() {
+	incorrectAnswerFeedback();
 }
 
-
-//increment question number
-function changeQuestionNumber () {
-	questionNumber ++;
-  $('.question-number').text(questionNumber+1);
-}
-
-//if correct answer
-//function correctAnswer() {
-	//correctAnswerFeedback();
-	//changeScore();
-//}
-
-//feedback for correct answer
 function correctAnswerFeedback() {
 	$("#qa-form").html(`<div class="correct">
 		<p><b>You got it right!</b></p><button type=button class="next-button">Next</button></div>
 	</div>`)
+
+
 }
 
 //feedback for incorrect answer
@@ -227,8 +183,31 @@ function incorrectAnswerFeedback() {
 			<p>The correct answer is <span>${currentQuestion.correctAnswer}</span></p><button type=button class="next-button">Next</button></div>`)
 }
 
-//render results 
-function displayResults () {
+//add one to score
+function addToScore () {
+	score ++;
+  $('.score').text(score);
+};
+
+function changeQuestionNumber() {
+	questionNumber ++;
+  $('.question-number').text(questionNumber);
+};
+
+
+//what happens when user clicks next
+function nextButton() {
+	 $('#qa-form').on('click', '.next-button', function (event) {
+	  if (questionNumber === 10) {
+	   	renderResults();
+	  } else {
+	 	nextQuestion();
+	 	changeQuestionNumber();
+	  }
+	});
+};
+
+function renderResults() {
 	if (score >= 8) {
 		$(".qa-form").html(`<div class="results"><h3>Yer a wizard, Harry!</h3><p>You got ${score} / 10</p><button class="restart-button">Restart Quiz</button></div>`)
 	} else if (score < 8 && score >= 4) {
@@ -236,25 +215,21 @@ function displayResults () {
 	} else {
 		$(".qa-form").html(`<div class="results"><h3>You're a muggle!</h3><p>You got ${score} / 10</p><button class="restart-button">Restart Quiz</button></div>`)
 	};
-}
-
-//restart quiz
-function restartQuiz() {
-	$('main').on('click', '.restart-button', function (event){
-    location.reload();
-  });
-}
-
-
-
-//start the quiz
-function createQuiz() {
-	startQuiz(); 
-	selectAnswer();
-	nextQuestion();
-
 };
 
-$(createQuiz);
 
+function restartQuiz() {
+	$('#results').on('click', '#restart-button')
+}
+
+
+function takeQuiz () {
+	startQuizButton();
+	submitAnswer();
+	startQuizButton();
+	nextButton();
+}
+
+
+$(takeQuiz);
 
