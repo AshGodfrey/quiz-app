@@ -131,6 +131,8 @@ function generateQuestion () {
 							<span> ${currentQuestion.answers[3]}</span>
 							</label>
 
+							<br>
+
 						<button type="submit" class="submit-button"> submit</button>
 					</fieldset>
 				</form>

@@ -14,7 +14,6 @@ body {
     text-align: center;
     font-family: 'Noto Sans', sans-serif;
     max-width: 500px;
-
 }
 
 
@@ -36,7 +35,6 @@ h1 {
 	width: 70%;
 	margin: auto;
 	margin-bottom: 20px;
-
 }
 
 footer {
@@ -55,15 +53,15 @@ ul {
 .answer-choice {
 	display: flex;
 	background: #efe5d5;
-	margin-bottom: 10px;
 	margin: auto;
 	min-width: 200px;
-	width: 75%;
+	width: 85%;
 	height: 50px;
 	color: #706656;
 	flex-direction: column;
 	outline:none;
 	vertical-align: center;
+	padding-top: 10px;
 }
 
 .answer-choice:hover {
@@ -72,17 +70,13 @@ ul {
 }
 
 
-.answer:checked + label {
+input[type="radio"]:checked+label {
   background: #706656;
   color: #efe5d5;
 }
 
 label {
     cursor: pointer;
-}
-
-.question-text {
-	margin-bottom: 20px;
 }
 
 
@@ -109,7 +103,7 @@ button[type=submit]{
 
 button[type=submit]:hover{
     background-color: #798b3f;
-    color: #ebca52
+    color: ##ebca52;
     cursor: pointer;
 }
 
@@ -146,7 +140,6 @@ button[type=submit]:hover{
 	border: 0px;
 	outline:none;
 	margin-top: 20px
-	display: block;
 	margin: auto;
 	cursor: pointer;
 }
@@ -187,26 +180,4 @@ button[type=submit]:hover{
     color: #ebca52
 }
 
-/* media */
-@media (min-width: 450px) {
-    .start-button {
-       font-size: 1.4em;
-   }
-
-
- @media (min-width: 600px) {
-    .start-button {
-       font-size: 1.8em;
-   }
-
-   @media (min-width: 450px) {
-    button[type=submit] {
-       font-size: 1.4em;
-   }
-
-
- @media (min-width: 600px) {
-    button[type=submit] {
-       font-size: 1.8em;
-   }
 
