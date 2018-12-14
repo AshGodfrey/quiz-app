@@ -111,22 +111,26 @@ function generateQuestion () {
 				<fieldset>
 				<legend class ="question-text"> ${currentQuestion.question}</legend>
 				<form>
-						<label id= "ans1" class = "answer-choice">
-							<input type = "radio" value="${currentQuestion.answers[0]}" name = "answer" class="answer" required>
-							<span>  ${currentQuestion.answers[0]} </span>
-						</label>
-						<label id= "ans2" class = "answer-choice" >
-							<input type = "radio" value="${currentQuestion.answers[1]}" name = "answer" class="answer" required>
+						
+							<input type = "radio" value="${currentQuestion.answers[0]}" name= "answer" id= "answer1" required>
+							<label for="answer1" id= "ans1" class="answer-choice">
+							<span>  ${currentQuestion.answers[0]} </span> </label>
+						
+							<input type = "radio" value="${currentQuestion.answers[1]}" name= "answer"  id = "answer2" required>
+							<label for="answer2" id= "ans2" class = "answer-choice" >
 							<span> ${currentQuestion.answers[1]} </span>
-						</label>
-						<label id= "ans3" class = "answer-choice">
-							<input type = "radio" value="${currentQuestion.answers[2]}" name = "answer" class="answer" required>
+						    </label>
+						
+							<input type = "radio" value="${currentQuestion.answers[2]}"  name= "answer"  id = "answer3" required>
+							<label for="answer3" id= "ans3" class = "answer-choice">
 							<span> ${currentQuestion.answers[2]}  </span>
-						</label>
-						</label>
-						<label id= "ans4" class = "answer-choice">
-							<input type = "radio" value="${currentQuestion.answers[3]}" name = "answer" class="answer" required>
+							</label>
+
+							<input type = "radio" value="${currentQuestion.answers[3]}" name= "answer"  id = "answer4"  required>
+							<label for="answer4" id= "ans4" class = "answer-choice">
 							<span> ${currentQuestion.answers[3]}</span>
+							</label>
+
 						<button type="submit" class="submit-button"> submit</button>
 					</fieldset>
 				</form>
@@ -190,9 +194,11 @@ function addToScore () {
 };
 
 function changeQuestionNumber() {
+	currentQuestion = quizQuestions[questionNumber];
 	questionNumber ++;
   $('.question-number').text(questionNumber);
 };
+
 
 
 //what happens when user clicks next
@@ -203,24 +209,33 @@ function nextButton() {
 	  } else {
 	 	nextQuestion();
 	 	changeQuestionNumber();
+	 	nextQuestion();
 	  }
 	});
 };
 
 function renderResults() {
 	if (score >= 8) {
-		$(".qa-form").html(`<div class="results"><h3>Yer a wizard, Harry!</h3><p>You got ${score} / 10</p><button class="restart-button">Restart Quiz</button></div>`)
+		$("#qa-form").html(`<div class="results"><h3>Yer a wizard, Harry!</h3><p>You got ${score} / 10</p><button id="restart-button">Restart Quiz</button></div>`)
 	} else if (score < 8 && score >= 4) {
-		$(".qa-form").html(`<div class="results"><h3>Muggleborn!</h3><p>You got ${score} / 10</p><button class="restart-button">Restart Quiz</button></div>`)
+		$("#qa-form").html(`<div class="results"><h3>Muggleborn!</h3><p>You got ${score} / 10</p><button id="restart-button">Restart Quiz</button></div>`)
 	} else {
-		$(".qa-form").html(`<div class="results"><h3>You're a muggle!</h3><p>You got ${score} / 10</p><button class="restart-button">Restart Quiz</button></div>`)
+		$("#qa-form").html(`<div class="results"><h3>You're a muggle!</h3><p>You got ${score} / 10</p><button id="restart-button">Restart Quiz</button></div>`)
 	};
+	$('#questions-left').hide();
+	restartQuiz();
 };
 
 
 function restartQuiz() {
-	$('#results').on('click', '#restart-button')
-}
+	$('.results').on('click', '#restart-button', function (event){
+		location.reload();
+	});
+}; 
+
+function selectAnswer() {
+}''
+
 
 
 function takeQuiz () {
@@ -228,6 +243,7 @@ function takeQuiz () {
 	submitAnswer();
 	startQuizButton();
 	nextButton();
+	selectAnswer();
 }
 
 

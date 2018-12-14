@@ -23,29 +23,32 @@
 	<div class="qa-form">
 			<div class ="question">
 				<fieldset>
-				<legend class ="question-text"> What is Nearly Headless Nick’s Full Name?</legend>
+				<legend class ="question-text"> ${currentQuestion.question}</legend>
 				<form>
-						<label class = "answer-choice">
-							<input type = "radio" value="choicetext" name = "answer" class="answer" required>
-							<span> Sir Nicholas de Monsky-Pimpton</span>
-						</label>
-						<label class = "answer-choice">
-							<input type = "radio" value="choicetext" name = "answer" class="answer" required>
-							<span> Sir Nicholas of Minsky-Popington</span>
-						</label>
-						<label class = "answer-choice">
-							<input type = "radio" value="choicetext" name = "answer" class="answer" required>
-							<span>Sir Nicholas de Mimsy-Porpington </span>
-						</label>
-						<label class = "answer-choice">
-							<input type = "radio" value="choicetext" name = "answer" class="answer" required>
-							<span> Sir Nicholas of Mimsy-Popington </span>
-						</label>
+						
+							<input type = "radio" value="${currentQuestion.answers[0]}" name= "answer" id= "answer1" required>
+							<label for="answer1" id= "ans1" class="answer-choice">
+							<span>  ${currentQuestion.answers[0]} </span> </label>
+						
+							<input type = "radio" value="${currentQuestion.answers[1]}" name= "answer"  id = "answer2" required>
+							<label for="answer2" id= "ans2" class = "answer-choice" >
+							<span> ${currentQuestion.answers[1]} </span>
+						    </label>
+						
+							<input type = "radio" value="${currentQuestion.answers[2]}"  name= "answer"  id = "answer3" required>
+							<label for="answer3" id= "ans3" class = "answer-choice">
+							<span> ${currentQuestion.answers[2]}  </span>
+							</label>
+
+							<input type = "radio" value="${currentQuestion.answers[3]}" name= "answer"  id = "answer4"  required>
+							<label for="answer4" id= "ans4" class = "answer-choice">
+							<span> ${currentQuestion.answers[3]}</span>
+							</label>
+
 						<button type="submit" class="submit-button"> submit</button>
 					</fieldset>
 				</form>
 			</div>
-
 		</div>
 	</main>
 
@@ -59,7 +62,7 @@
 		</footer>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="index.js"></script>
+	<script type="text/javascript" src="index6.js"></script>
 
 </body>
 
