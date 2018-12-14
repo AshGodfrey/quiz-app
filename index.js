@@ -1,5 +1,3 @@
-
-//Establish questions + answers
 const quizQuestions = [
 {
 	question: "What is Nearly Headless Nick’s Full Name?",
@@ -9,167 +7,247 @@ const quizQuestions = [
 		'Sir Nicholas de Mimsy-Porpington',
 		'Sir Nicholas of Mimsy-Popington'
 	], 
-	correctAnswer: 2
+	correctAnswer: 'Sir Nicholas de Mimsy-Porpington'
 }, 
-//more items here
+{ 
+	question: "What is the max speed for a Firebolt Broomstick?",
+	answers: [
+		'100 MPH',
+		'150 MPH',
+		'175 MPH',
+		'135 MPH'
+	], 
+	correctAnswer: '150 MPH'
+},
+{
+	question: "What did Ginny name her pet pygmy puff?",
+	answers: [
+		'Arnold',
+		'Floofy',
+		'Scabbers II',
+		'Arthur'
+	], 
+	correctAnswer: 'Arnold'
+}, 
+{
+	question: "Which was NOT a password to the headmaster’s office",
+	answers: [
+		'Cockroach Cluster',
+		'Raspberry Gumdrop',
+		'Dumbledore',
+		'Sherbert Lemon',
+	], 
+	correctAnswer: 'Raspberry Gumdrop'
+}, 
+{
+	question: "What is Aragog’s wife’s name?",
+	answers: [
+		'Mosag',
+		'Mora',
+		'Argona',
+		'Mosog'
+	], 
+	correctAnswer: 'Mosag'
+}, 
+{
+	question: "What house was Moaning Myrtle sorted into?",
+	answers: [
+		'Slytherin',
+		'Ravenclaw',
+		'Gryffindor',
+		'Hufflepuff'
+	], 
+	correctAnswer: 'Ravenclaw'
+}, 
+{
+	question: "What year was Ollivanders Founded?",
+	answers: [
+		'465 BC',
+		'57 BC',
+		'712 BC',
+		'382 BC'
+	], 
+	correctAnswer: '382 BC'
+}, 
+{
+	question: "What number is Harry's vault at Gringotts?",
+	answers: [
+		'687',
+		'787',
+		'727',
+		'627'
+	], 
+	correctAnswer: '687'
+}, 
+{
+	question: "Who is in the compartment that Harry, Ginny, and Neville join at the beginning of Harry’s fifth year?",
+	answers: [
+		'Cho Chang',
+		'Remus Lupin',
+		'Luna Lovegood',
+		'Hermione Granger'
+	], 
+	correctAnswer: 'Luna Lovegood'
+}, 
+{
+	question: "Where did Qudditch Originate?",
+	answers: [
+		"Hogsmede",
+		'Queerditch Marsh',
+		'Quebec',
+		'Edinborough'
+
+	], 
+	correctAnswer: 'Queerditch Marsh'
+}, 
 ];
 
-let questionNumber = 1;
 let score = 0;
+let questionNumber = 1;
 let currentQuestion = quizQuestions[0];
 
-//register event handlers
-$("#start-button").on('click', startQuiz);
-//function that corresponds to each id, everytime you click on a label
-//add a class/styling to that label that will show that it is selected
-//remove any prior selected
-//set an answer variable, maybe there's a 'currentAnswer'
-//click submit, if no answer do nothing. 
-//if there is answer check to see if correct
-//if correct add to score
-//go to next question -- change to next question -- add to next question 
-
-//generate Question w/ HTML
-function generateQuestion(){
-		return `<div class ="question">
+function generateQuestion () {
+	return `<div class ="question">
 				<fieldset>
-				<legend class ="question-text"> ${currentQuestion.question} </legend>
+				<legend class ="question-text"> ${currentQuestion.question}</legend>
 				<form>
-						<label id= "ans1" class = "answer-choice">
-							<input type = "radio" value="choicetext" name = "answer" class="answer" required>
-							<span> ${currentQuestion.answers[0]} </span>
-						</label>
-						<label id= "ans2" class = "answer-choice" >
-							<input type = "radio" value="choicetext" name = "answer" class="answer" required>
+						
+							<input type = "radio" value="${currentQuestion.answers[0]}" name= "answer" id= "answer1" required>
+							<label for="answer1" id= "ans1" class="answer-choice">
+							<span>  ${currentQuestion.answers[0]} </span> </label>
+						
+							<input type = "radio" value="${currentQuestion.answers[1]}" name= "answer"  id = "answer2" required>
+							<label for="answer2" id= "ans2" class = "answer-choice" >
 							<span> ${currentQuestion.answers[1]} </span>
-						</label>
-						<label id= "ans3" class = "answer-choice">
-							<input type = "radio" value="choicetext" name = "answer" class="answer" required>
-							<span>${currentQuestion.answers[2]} </span>
-						</label>
-						</label>
-						<label id= "ans4" class = "answer-choice">
-							<input type = "radio" value="choicetext" name = "answer" class="answer" required>
-							<span> ${currentQuestion.answers[3]} </span>
-						<button type="submit" id="submit-button"> submit</button>
+						    </label>
+						
+							<input type = "radio" value="${currentQuestion.answers[2]}"  name= "answer"  id = "answer3" required>
+							<label for="answer3" id= "ans3" class = "answer-choice">
+							<span> ${currentQuestion.answers[2]}  </span>
+							</label>
+
+							<input type = "radio" value="${currentQuestion.answers[3]}" name= "answer"  id = "answer4"  required>
+							<label for="answer4" id= "ans4" class = "answer-choice">
+							<span> ${currentQuestion.answers[3]}</span>
+							</label>
+
+							<br>
+
+						<button type="submit" class="submit-button"> submit</button>
 					</fieldset>
 				</form>
 			</div>`;
-
 };
 
-//when user clicks submit
-//1) Score question
-//2) update score on screen
-//3) update question number
-//4) if more questions display next else display score/restart
+function startQuizButton () {
+	$("button[name='start']").on('click', function(event){
+		nextQuestion();
+	});
+};
 
-
-
-function displayQuestion(){
-	//display question to Dom
-	$("#qa-form").html(generateQuestion());
+function nextQuestion () {
+	$('#start-page').remove();
+	$('#qa-form').html(generateQuestion());
 }
 
-//add one to question number
-function changeQuestionNumber(){
-	questionNumber += 1;
-	return questionNumber;
+function submitAnswer() {
+	$('#qa-form').on('click', '.submit-button', function (event) {
+		event.preventDefault();
+		let userChoice = $('input:radio[name=answer]:checked').val();
+		checkAnswer(userChoice);
+	});
+};
+
+function checkAnswer(choice) {
+	if (choice == currentQuestion.correctAnswer) {
+		correctAnswer();
+	} else {
+		incorrectAnswer();
+	}
+};
+
+function correctAnswer() {
+	correctAnswerFeedback()
+	addToScore();
+}
+
+function incorrectAnswer() {
+	incorrectAnswerFeedback();
+}
+
+function correctAnswerFeedback() {
+	$("#qa-form").html(`<div class="correct">
+		<p><b>You got it right!</b></p><button type=button class="next-button">Next</button></div>
+	</div>`)
+
 
 }
 
+//feedback for incorrect answer
+function incorrectAnswerFeedback() {
+	$("#qa-form").html(`<div class="correct"><p><b>You got it wrong!</b>
+			<p>The correct answer is <span>${currentQuestion.correctAnswer}</span></p><button type=button class="next-button">Next</button></div>`)
+}
 
 //add one to score
-function changeScore () {
-	score += 1;
-	return score;
-}
+function addToScore () {
+	score ++;
+  $('.score').text(score);
+};
 
-//update score
-//function updateScore(){
-	//this would change how the score displays in DOM
-//}
-
-
-//start quiz
-function startQuiz(){
-	//hide the start info
-	$("#start-page").hide();
-    //displays the first question
-    displayQuestion();
+function changeQuestionNumber() {
+	currentQuestion = quizQuestions[questionNumber];
+	questionNumber ++;
+  $('.question-number').text(questionNumber);
 };
 
 
 
-//choose answer
+//what happens when user clicks next
+function nextButton() {
+	 $('#qa-form').on('click', '.next-button', function (event) {
+	  if (questionNumber === 10) {
+	   	renderResults();
+	  } else {
+	 	nextQuestion();
+	 	changeQuestionNumber();
+	 	nextQuestion();
+	  }
+	});
+};
 
-function chooseAnswer(){
-	//select an LI
+function renderResults() {
+	if (score >= 8) {
+		$("#qa-form").html(`<div class="results"><h3>Yer a wizard, Harry!</h3><p>You got ${score} / 10</p><button id="restart-button">Restart Quiz</button></div>`)
+	} else if (score < 8 && score >= 4) {
+		$("#qa-form").html(`<div class="results"><h3>Muggleborn!</h3><p>You got ${score} / 10</p><button id="restart-button">Restart Quiz</button></div>`)
+	} else {
+		$("#qa-form").html(`<div class="results"><h3>You're a muggle!</h3><p>You got ${score} / 10</p><button id="restart-button">Restart Quiz</button></div>`)
+	};
+	$('#questions-left').hide();
+	restartQuiz();
+};
 
+
+function restartQuiz() {
+	$('.results').on('click', '#restart-button', function (event){
+		location.reload();
+	});
+}; 
+
+function selectAnswer() {
+}''
+
+
+
+function takeQuiz () {
+	startQuizButton();
+	submitAnswer();
+	startQuizButton();
+	nextButton();
+	selectAnswer();
 }
 
 
-
-
-function handleSubmitButton() {
-  $('#qa-form').on('click', '#submit-button', function(event) {
-    event.preventDefault()
-
-    //onst answer = $('input:checked').siblings('span');
-
-    //const userIsCorrect = checkUserAnswer(answer);
-    //if(userIsCorrect) {
-     // generateCorrectFeedback();
-    //} else {
-     // generateIncorrectFeedback();
-   // }
-  //});
-}
-
-
-
-
-
-
-
-
-
-
-
-//correct answer feedback
-function correctAnswer(){
-	//return 'correct'
-	//display correct 
-
-}
-
-//incorrect answer feedback
-function incorrectAnswer(){
-	//return incorrect
-
-}
-
-
-//Quiz finished
-function results(){
-	//display final score
-
-}
-
-//next
-function nextQuestion(){
-
-}
-
-//start the quiz 
-function restartQuiz(){
-	//this will be a button to start the quiz at question 1/start page 
-
-}
-
-
-//run quiz
-function runQuiz(){
-
-}
+$(takeQuiz);
 
