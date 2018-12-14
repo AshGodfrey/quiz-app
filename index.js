@@ -224,7 +224,7 @@ function renderResults() {
 	} else {
 		$("#qa-form").html(`<div class="results"><h3>You're a muggle!</h3><p>You got ${score} / 10</p><button id="restart-button">Restart Quiz</button></div>`)
 	};
-	$('#questions-left').hide();
+	$('#questions-left').html("<BR><BR>");
 	restartQuiz();
 };
 
