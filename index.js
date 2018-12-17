@@ -107,34 +107,34 @@ let questionNumber = 1;
 let currentQuestion = quizQuestions[0];
 
 function generateQuestion () {
-	return `<div class ="question">
-				<fieldset>
-				<legend class ="question-text"> ${currentQuestion.question}</legend>
+	return `<section role="display-questin" class ="question">
 				<form>
-						
-							<input type = "radio" value="${currentQuestion.answers[0]}" name= "answer" id= "answer1" required>
-							<label for="answer1" id= "ans1" class="answer-choice">
-							<span>  ${currentQuestion.answers[0]} </span> </label>
-						
-							<input type = "radio" value="${currentQuestion.answers[1]}" name= "answer"  id = "answer2" required>
-							<label for="answer2" id= "ans2" class = "answer-choice" >
-							<span> ${currentQuestion.answers[1]} </span>
-						    </label>
-						
-							<input type = "radio" value="${currentQuestion.answers[2]}"  name= "answer"  id = "answer3" required>
-							<label for="answer3" id= "ans3" class = "answer-choice">
-							<span> ${currentQuestion.answers[2]}  </span>
-							</label>
+					<fieldset>
+					<legend class ="question-text"> ${currentQuestion.question}</legend>
+							
+								<input type = "radio" value="${currentQuestion.answers[0]}" name= "answer" id= "answer1" >
+								<label for="answer1" id= "ans1" class="answer-choice">
+								 ${currentQuestion.answers[0]} </label>
+							
+								<input type = "radio" value="${currentQuestion.answers[1]}" name= "answer"  id = "answer2" >
+								<label for="answer2" id= "ans2" class = "answer-choice" >
+								${currentQuestion.answers[1]} 
+							    </label>
+							
+								<input type = "radio" value="${currentQuestion.answers[2]}"  name= "answer"  id = "answer3" >
+								<label for="answer3" id= "ans3" class = "answer-choice">
+								${currentQuestion.answers[2]}  
+								</label>
 
-							<input type = "radio" value="${currentQuestion.answers[3]}" name= "answer"  id = "answer4"  required>
-							<label for="answer4" id= "ans4" class = "answer-choice">
-							<span> ${currentQuestion.answers[3]}</span>
-							</label>
+								<input type = "radio" value="${currentQuestion.answers[3]}" name= "answer"  id = "answer4" >
+								<label for="answer4" id= "ans4" class = "answer-choice">
+								 ${currentQuestion.answers[3]}
+								</label>
 
-							<br>
+								<br>
 
-						<button type="submit" class="submit-button"> submit</button>
-					</fieldset>
+							<button type="submit" class="submit-button"> submit</button>
+						</fieldset>
 				</form>
 			</div>`;
 };
@@ -154,7 +154,11 @@ function submitAnswer() {
 	$('#qa-form').on('click', '.submit-button', function (event) {
 		event.preventDefault();
 		let userChoice = $('input:radio[name=answer]:checked').val();
-		checkAnswer(userChoice);
+		 if ($('input:radio').is(':checked')) {
+			checkAnswer(userChoice);
+			} else {
+			alert ("You must select an answer!")
+			}
 	});
 };
 
@@ -218,11 +222,11 @@ function nextButton() {
 
 function renderResults() {
 	if (score >= 8) {
-		$("#qa-form").html(`<div class="results"><h3>Yer a wizard, Harry!</h3><p>You got ${score} / 10</p><button id="restart-button">Restart Quiz</button></div>`)
+		$("#qa-form").html(`<section role="display-results" class="results"><h3>Yer a wizard, Harry!</h3><p>You got ${score} / 10</p><button id="restart-button">Restart Quiz</button></section>`)
 	} else if (score < 8 && score >= 4) {
-		$("#qa-form").html(`<div class="results"><h3>Muggleborn!</h3><p>You got ${score} / 10</p><button id="restart-button">Restart Quiz</button></div>`)
+		$("#qa-form").html(`<section role="display-results" class="results"><h3>Muggleborn!</h3><p>You got ${score} / 10</p><button id="restart-button">Restart Quiz</button></section>`)
 	} else {
-		$("#qa-form").html(`<div class="results"><h3>You're a muggle!</h3><p>You got ${score} / 10</p><button id="restart-button">Restart Quiz</button></div>`)
+		$("#qa-form").html(`<section role="display-results" class="results"><h3>You're a muggle!</h3><p>You got ${score} / 10</p><button id="restart-button">Restart Quiz</button></section>`)
 	};
 	$('#questions-left').html("<BR><BR>");
 	restartQuiz();
@@ -235,8 +239,6 @@ function restartQuiz() {
 	});
 }; 
 
-function selectAnswer() {
-}''
 
 
 
